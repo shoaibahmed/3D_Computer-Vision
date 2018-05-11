@@ -5,6 +5,8 @@ using namespace std;
 
 int main()
 {
+	int fps = 30;
+	int delay = 1000 / fps;
 	cv::Mat frame, grayImg, edgeImg;
 	cv::VideoCapture videoCapture(0);
 	if (!videoCapture.isOpened())
@@ -30,7 +32,7 @@ int main()
 
 		cv::imshow("Webcam output", frame);
 		cv::imshow(windowName, edgeImg);
-		char keyPressed = cv::waitKey(1.0/30.0);
+		char keyPressed = cv::waitKey(delay);
 
 		if (keyPressed == 'q' || keyPressed == 'Q')
 		{

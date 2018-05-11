@@ -5,8 +5,8 @@ using namespace std;
 
 int main()
 {
-	int fps = 30
-	int delay = 1000 / fps
+	int fps = 30;
+	int delay = 1000 / fps;
 	cv::Mat frame;
 	cv::VideoCapture videoCapture(0);
 	if (!videoCapture.isOpened())
