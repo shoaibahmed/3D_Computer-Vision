@@ -5,6 +5,8 @@ using namespace std;
 
 int main()
 {
+	int fps = 30
+	int delay = 1000 / fps
 	cv::Mat frame;
 	cv::VideoCapture videoCapture(0);
 	if (!videoCapture.isOpened())
@@ -18,7 +20,7 @@ int main()
 	{
 		cv::imshow("Webcam output", frame);
 		videoCapture >> frame;
-		char keyPressed = cv::waitKey(1.0/30.0);
+		char keyPressed = cv::waitKey(delay);
 		if (keyPressed == 'q' || keyPressed == 'Q')
 		{
 			cout << "Program terminated by user!" << endl;

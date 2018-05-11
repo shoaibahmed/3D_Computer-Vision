@@ -5,7 +5,7 @@ using namespace std;
 
 int main()
 {
-	cv::Mat frame, gray, cannyOut;
+	cv::Mat frame, grayImg, edgeImg;
 	cv::VideoCapture videoCapture(0);
 	if (!videoCapture.isOpened())
 	{
@@ -15,7 +15,7 @@ int main()
 
 	// Create window with trackbars
 	int lowThreshold = 50, highThreshold = 150;
-	string windowName = "Webcam output";
+	string windowName = "Edge output";
 	cv::namedWindow(windowName);
 	cv::createTrackbar("Low Threshold", windowName, &lowThreshold, 255);
 	cv::createTrackbar("High Threshold", windowName, &highThreshold, 255);
@@ -25,10 +25,11 @@ int main()
 		videoCapture >> frame;
 
 		// Perform canny edge detection
-		cv::cvtColor(frame, gray, CV_BGR2GRAY);
-		Canny(gray, cannyOut, lowThreshold, highThreshold);
+		cv::cvtColor(frame, grayImg, CV_BGR2GRAY);
+		Canny(grayImg, edgeImg, lowThreshold, highThreshold);
 
 		cv::imshow("Webcam output", frame);
+		cv::imshow(windowName, edgeImg);
 		char keyPressed = cv::waitKey(1.0/30.0);
 
 		if (keyPressed == 'q' || keyPressed == 'Q')
